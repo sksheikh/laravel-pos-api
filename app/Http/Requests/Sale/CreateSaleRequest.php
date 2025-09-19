@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Sale;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -33,6 +33,7 @@ class CreateSaleRequest extends FormRequest
             'payments' => 'required|array|min:1',
             'payments.*.payment_method_id' => 'required|exists:payment_methods,id',
             'payments.*.amount' => 'required|numeric|min:0',
+            'sale_date' => 'nullable|date',
         ];
     }
 }

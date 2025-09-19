@@ -21,7 +21,7 @@ class CreateSaleUseCase
             $this->stockService->validateStockAvailability(
                 $item['product_id'],
                 $item['quantity'],
-                $saleData->warehouse_id
+                $saleData->warehouseId
             );
         }
 
@@ -30,19 +30,19 @@ class CreateSaleUseCase
             $this->stockService->reserveStock(
                 $item['product_id'],
                 $item['quantity'],
-                $saleData->warehouse_id
+                $saleData->warehouseId
             );
         }
 
         // Create sale
         $sale = $this->saleRepository->create($saleData->toArray());
-
+        // dd($sale->toArray());
         // Reduce actual stock after successful sale
         foreach ($saleData->items as $item) {
             $this->stockService->reduceStock(
                 $item['product_id'],
                 $item['quantity'],
-                $saleData->warehouse_id
+                $saleData->warehouseId
             );
         }
 

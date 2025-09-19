@@ -3,12 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Sale extends Model
 {
     protected $fillable = [
-        'sale_number', 'customer_id', 'total_amount', 'tax_amount',
-        'discount_amount', 'status', 'user_id', 'notes'
+        'sale_number', 'customer_id', 'warehouse_id',  'total_amount', 'tax_amount',
+        'discount_amount', 'status', 'user_id', 'notes','sale_date'
     ];
 
     protected $casts = [

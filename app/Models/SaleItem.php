@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class SaleItem extends Model
 {
@@ -19,4 +20,12 @@ class SaleItem extends Model
     {
         return $this->belongsTo(Product::class);
     }
+
+    protected static function booted()
+    {
+        static::creating(function ($item) {
+            $item->total_price = $item->quantity * $item->unit_price;
+        });
+    }
+
 }

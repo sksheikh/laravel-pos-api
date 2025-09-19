@@ -10,6 +10,8 @@ use App\Models\Warehouse;
 use Laravel\Sanctum\Sanctum;
 use App\Models\PaymentMethod;
 use App\Domain\Sales\Models\Sale;
+use App\Domain\Sales\ValueObjects\SaleData;
+use App\Models\Customer;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class SalesApiTest extends TestCase
@@ -17,6 +19,7 @@ class SalesApiTest extends TestCase
     use RefreshDatabase;
 
     private User $user;
+    private Customer $customer;
     private Product $product;
     private Warehouse $warehouse;
     private PaymentMethod $paymentMethod;
@@ -26,6 +29,7 @@ class SalesApiTest extends TestCase
         parent::setUp();
 
         $this->user = User::factory()->create();
+        $this->customer = Customer::factory()->create();
         $this->product = Product::factory()->create(['price' => 100]);
         $this->warehouse = Warehouse::factory()->create();
         $this->paymentMethod = PaymentMethod::factory()->create();
@@ -82,8 +86,8 @@ class SalesApiTest extends TestCase
 
         // Verify stock was reduced
         $stock = Stock::where('product_id', $this->product->id)
-                     ->where('warehouse_id', $this->warehouse->id)
-                     ->first();
+            ->where('warehouse_id', $this->warehouse->id)
+            ->first();
         $this->assertEquals(48, $stock->quantity);
     }
 

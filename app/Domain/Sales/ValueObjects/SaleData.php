@@ -13,7 +13,8 @@ class SaleData
         public readonly array $payments,
         public readonly float $discountAmount = 0,
         public readonly float $taxAmount = 0,
-        public readonly ?string $notes = null
+        public readonly ?string $notes = null,
+        public readonly ?string $saleDate = null,
     ) {}
 
     public static function fromRequest($request): self
@@ -25,7 +26,8 @@ class SaleData
             $request->payments,
             $request->discount_amount ?? 0,
             $request->tax_amount ?? 0,
-            $request->notes
+            $request->notes,
+            $request->sale_date ?? now()->format('Y-m-d'),
         );
     }
 
@@ -43,6 +45,7 @@ class SaleData
             'sale_number' => $this->generateSaleNumber(),
             'status' => 'completed',
             'user_id' => auth()->id(),
+            'sale_date' => $this->saleDate,
         ];
     }
 

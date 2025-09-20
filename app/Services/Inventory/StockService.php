@@ -1,8 +1,9 @@
 <?php
-namespace App\Domain\Inventory\Services;
+namespace App\Services\Inventory;
 
 use App\Models\Stock;
-use App\Domain\Inventory\Exceptions\InsufficientStockException;
+use App\Models\StockAdjustment;
+use App\Exceptions\InsufficientStockException;
 
 class StockService
 {

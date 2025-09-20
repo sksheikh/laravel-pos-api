@@ -3,9 +3,9 @@
 namespace App\Services;
 
 use App\Models\Sale;
+use App\DTOs\SaleData;
 use Illuminate\Support\Facades\DB;
-use App\Domain\Sales\ValueObjects\SaleData;
-use App\Domain\Inventory\Services\StockService;
+use App\Services\Inventory\StockService;
 
 class SaleService
 {
@@ -37,7 +37,7 @@ class SaleService
             $sale->items()->createMany($saleData->items);
             $sale->payments()->createMany($saleData->payments);
 
-            // dd($sale->toArray());
+    
             // Reduce actual stock after successful sale
             foreach ($saleData->items as $item) {
                 $this->stockService->reduceStock(

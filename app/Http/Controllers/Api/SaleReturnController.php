@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
+use App\Models\SaleReturn;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Resources\SaleReturnResource;
+use App\Http\Requests\Sale\CreateSaleReturnRequest;
 
 class SaleReturnController extends Controller
 {

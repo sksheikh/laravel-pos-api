@@ -10,7 +10,7 @@ class Warehouse extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'address', 'manager_id'];
+    protected $fillable = ['name', 'address', 'manager_id', 'is_active'];
 
     public function stocks(): HasMany
     {

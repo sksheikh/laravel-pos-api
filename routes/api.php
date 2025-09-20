@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Api\SaleController;
 use App\Http\Controllers\Api\StockController;
+use App\Http\Controllers\WarehouseController;
 use App\Http\Controllers\Api\PurchaseController;
 use App\Http\Controllers\Api\SaleReturnController;
 use App\Http\Controllers\Api\WarehouseTransferController;

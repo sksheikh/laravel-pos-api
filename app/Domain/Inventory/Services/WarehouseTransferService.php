@@ -2,6 +2,7 @@
 namespace App\Domain\Inventory\Services;
 
 use App\Models\Stock;
+use App\Models\WarehouseTransfer;
 
 class WarehouseTransferService
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Domain\Sales\ValueObjects;
+namespace App\DTOs;
 
 use App\Models\Sale;
 
@@ -27,7 +27,7 @@ class SaleData
             $request->discount_amount ?? 0,
             $request->tax_amount ?? 0,
             $request->notes,
-            $request->sale_date ?? now()->format('Y-m-d'),
+            $request->sale_date ?? now()->format('Y-m-d H:i:s'),
         );
     }
 

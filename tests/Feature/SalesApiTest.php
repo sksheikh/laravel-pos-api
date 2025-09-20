@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Api;
+namespace Tests\Feature;
 
 use Tests\TestCase;
 use App\Models\User;
@@ -9,8 +9,6 @@ use App\Models\Product;
 use App\Models\Warehouse;
 use Laravel\Sanctum\Sanctum;
 use App\Models\PaymentMethod;
-use App\Domain\Sales\Models\Sale;
-use App\Domain\Sales\ValueObjects\SaleData;
 use App\Models\Customer;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 

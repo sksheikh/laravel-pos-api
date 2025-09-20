@@ -115,11 +115,11 @@ class AuthService
         $this->clearFailedAttempts($request->email);
 
         $response = [
-            'user' => new UserResource($user->load('roles.permissions')),
             'token' => $token,
             'token_type' => 'Bearer',
             'expires_at' => Carbon::now()->addDays(30)->toISOString(),
             'abilities' => $abilities,
+            'user' => new UserResource($user->load('roles.permissions'))
         ];
 
         return successResponse('Login successful', $response);

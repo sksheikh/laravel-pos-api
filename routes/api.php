@@ -59,7 +59,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
     // Master Data
     Route::apiResource('products', ProductController::class);
-    Route::apiResource('warehouses', WarehouseController::class);
+    Route::apiResource('warehouses', WarehouseController::class)->middleware('permission:manage_warehouses');
     Route::apiResource('payment-methods', PaymentMethodController::class);
 
     // Reports

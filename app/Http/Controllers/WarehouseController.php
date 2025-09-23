@@ -2,21 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Warehouse;
+use Illuminate\Http\Request;
+use App\Services\WarehouseService;
+use App\Http\Controllers\Controller;
+use function App\Helpers\errorResponse;
+use App\Http\Resources\WarehouseResource;
+
+use function App\Helpers\successResponse;
 use App\Http\Requests\Warehouse\CreateWarehouseRequest;
 use App\Http\Requests\Warehouse\UpdateWarehouseRequest;
-use App\Http\Resources\WarehouseResource;
-use App\Models\Warehouse;
-use App\Services\WarehouseService;
-use Illuminate\Http\Request;
-
-use function App\Helpers\errorResponse;
-use function App\Helpers\successResponse;
 
 class WarehouseController extends Controller
 {
     public function __construct(private WarehouseService $warehouseService)
     {
-
     }
     /**
      * Display a listing of the resource.

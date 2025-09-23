@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use Tests\TestCase;
 use App\Models\User;
 use Laravel\Sanctum\Sanctum;
+use Spatie\Permission\Models\Permission;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -242,11 +243,26 @@ class WarehouseApiTest extends TestCase
     public function it_checks_permissions_for_warehouse_endpoints()
     {
         // Arrange
-        $this->user->revokePermissionTo('manage_warehouses');
-        // Act
+        Permission::create(['name' => 'manage_warehouses', 'guard_name' => 'sanctum']);
+
+        // Act - authenticated request
         $response = $this->getJson('/api/warehouses');
         // Assert
         $response->assertStatus(403);
+    }
+
+    /** @test */
+    public  function it_allows_access_with_proper_permissions()
+    {
+        // Arrange
+        $permission = Permission::create(['name' => 'manage_warehouses', 'guard_name' => 'sanctum']);
+        $this->user->givePermissionTo($permission);
+
+        // Act - authenticated request with permission
+        $response = $this->getJson('/api/warehouses');
+
+        // Assert
+        $response->assertStatus(200);
     }
 
 }
